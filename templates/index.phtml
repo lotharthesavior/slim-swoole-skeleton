@@ -1,0 +1,90 @@
+
+<div 
+    x-data="{todolist: []}" 
+    x-on:todoloaded.window="
+        todolist = $event.detail;
+    "
+    x-on:additem.window="
+        todolist.push($event.detail);
+    "
+>
+
+    <div class="form-inline d-flex mb-4 mt-4">
+        <label for="todoitem" class="mr-4">New Item:</label>
+        <input 
+            type="text" 
+            class="form-control flex-grow-1" 
+            id="todoitem"
+            onkeypress="inputKeyUp(event)"
+        />
+        <button 
+            type="button" 
+            class="ml-4 btn btn-primary"
+            onclick="addItem()" 
+        >Add</button>
+    </div>
+
+    <ul class="list-group">
+        <template x-for="(item, id) in todolist" :key="id">
+
+            <li class="list-group-item">
+                <span x-text="item.content"></span>
+            </li>
+
+        </template>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    var wsServer = 'ws://127.0.0.1:9502';
+    var websocket = new WebSocket(wsServer);
+
+    function inputKeyUp(e) {
+        if(e.keyCode === 13){
+            e.preventDefault();
+            addItem()
+        }
+    }
+
+    function addItem() {
+        console.log(websocket.readyState);
+
+        let itemValue = document.getElementById('todoitem').value;
+
+        websocket.send(JSON.stringify({
+            "action": "createTodo",
+            "params": {
+                "content": itemValue,
+            }
+        }));
+        document.getElementById('todoitem').value = '';
+    }
+    
+    websocket.onopen = function (evt) {
+        console.log("Connected to WebSocket server.");
+    };
+
+    websocket.onclose = function (evt) {
+        console.log("Disconnected");
+    };
+
+    websocket.onmessage = function (evt) {
+        console.log('Retrieved data from server: ' + evt.data);
+
+        let parsedData = JSON.parse(evt.data);
+
+        if (Array.isArray(parsedData)) {
+            window.dispatchEvent(new CustomEvent('todoloaded', {
+                detail: parsedData
+            }));
+        } else {
+            window.dispatchEvent(new CustomEvent('additem', {
+                detail: parsedData
+            }));
+        }
+    };
+
+    websocket.onerror = function (evt, e) {
+        console.log('Error occured: ' + evt.data);
+    };
+</script>
