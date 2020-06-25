@@ -12,9 +12,25 @@ The frontend is built using AlpineJS and uses JS Events to update components bas
 - PHP League Flysystem (https://flysystem.thephpleague.com)
 - AlpineJS for UI (https://github.com/alpinejs/alpine)
 
+## Details
+
+The data is being kept in the filesystem, the only driver available right now. It is in the roadmap to enhance this part.
+
+To be able to use the filesystem data persistence, create the directory at the root of this project: `/data/todos`.
+
 ## To start HTTP Server
 
 (using swoole)
+
+This is how your index.php file should look like:
+
+```php
+```php
+(require __DIR__ . '/src/http_server.php')($app); // <-- swoole http server
+// $app->run(); // <-- cgi http servers
+```
+```
+
 ```shell
 php index.php
 ```
