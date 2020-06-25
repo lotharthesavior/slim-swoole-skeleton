@@ -25,10 +25,8 @@ To be able to use the filesystem data persistence, create the directory at the r
 This is how your index.php file should look like:
 
 ```php
-```php
 (require __DIR__ . '/src/http_server.php')($app); // <-- swoole http server
 // $app->run(); // <-- cgi http servers
-```
 ```
 
 ```shell
