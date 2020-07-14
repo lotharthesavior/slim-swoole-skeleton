@@ -6,6 +6,7 @@ use \Exception;
 use \InvalidArgumentException;
 
 use App\Services\Actions\Interfaces\ActionInterface;
+use App\Services\Actions\ExampleGetAction;
 use App\Services\Actions\ExampleCreateAction;
 use App\Services\Actions\ExampleUpdateAction;
 use App\Services\Actions\ExampleDeleteAction;
@@ -31,6 +32,14 @@ class ExampleSocketHandler extends SocketHandler
         $model = ModelExample::class;
 
         switch($parsedData['action']) {
+
+            case self::READ_ACTION:
+                return new ExampleGetAction(
+                    $parsedData['params'],
+                    $this->container->dataDriver,
+                    $model
+                );
+                break;
 
             case self::CREATE_ACTION:
                 return new ExampleCreateAction(

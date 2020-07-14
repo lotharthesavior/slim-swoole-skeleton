@@ -2,7 +2,8 @@
 
 namespace App\Services\Actions;
 
-use \Exception;
+use Exception;
+use InvalidArgumentException;
 
 use App\Services\Actions\Interfaces\ActionInterface;
 use App\Drivers\Data\Interfaces\DataDriverInterface;

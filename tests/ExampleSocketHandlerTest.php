@@ -32,6 +32,7 @@ class ExampleSocketHandlerTest extends TestCase
     public function actionsDataProvider() : array
     {
         return [
+            [SocketHandler::READ_ACTION],
             [SocketHandler::CREATE_ACTION],
             [SocketHandler::UPDATE_ACTION],
             [SocketHandler::DELETE_ACTION],
@@ -80,6 +81,30 @@ class ExampleSocketHandlerTest extends TestCase
         $socketHandler = $this->getSocketHandler();
 
         $this->assertInstanceOf($className, $socketHandler->parseData($data));
+    }
+
+    public function testGetActionReadsRecordAndReturnsResource()
+    {
+        $data = $this->prepareData(SocketHandler::READ_ACTION);
+        $socketHandler = $this->getSocketHandler();
+
+        $action = $socketHandler->parseData($data);
+        $result = $action->execute();
+
+        $this->assertArrayHasKey('content', $result);
+        $this->assertEquals(self::DEFAULT_CONTENT, $result['content']);
+    }
+
+    public function testGetActionReadsAllRecordAndReturnsResource()
+    {
+        $data = $this->prepareData(SocketHandler::READ_ACTION . '-all');
+        $socketHandler = $this->getSocketHandler();
+
+        $action = $socketHandler->parseData($data);
+        $result = $action->execute();
+
+        $this->assertArrayHasKey('content', $result);
+        $this->assertEquals(self::DEFAULT_CONTENT, $result['content']);
     }
 
     public function testCreateActionCreatesRecordAndReturnsResource()
@@ -149,6 +174,22 @@ class ExampleSocketHandlerTest extends TestCase
     private function prepareData(string $action): string
     {
         switch ($action) {
+            case SocketHandler::READ_ACTION:
+                return json_encode([
+                    'action' => $action,
+                    'params' => [
+                        'id' => 1,
+                    ],
+                ]);
+                break;
+
+            case SocketHandler::READ_ACTION . '-all':
+                return json_encode([
+                    'action' => SocketHandler::READ_ACTION,
+                    'params' => [],
+                ]);
+                break;
+
             case SocketHandler::CREATE_ACTION:
                 return json_encode([
                     'action' => $action,
