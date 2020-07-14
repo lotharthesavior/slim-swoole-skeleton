@@ -10,7 +10,7 @@ use App\Services\Actions\Interfaces\ActionInterface;
 abstract class SocketHandler implements SocketHandlerInterface
 {
     /** @var string */
-    const READ_ACTION = 'read';
+    const READ_ACTION = 'get';
 
     /** @var string */
     const CREATE_ACTION = 'create';

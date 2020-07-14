@@ -16,12 +16,6 @@ return function (App $app) {
 
     $server->on('open', function(Server $server, Swoole\Http\Request $request) use ($app) {
         echo "connection open: {$request->fd}\n";
-
-        $message = (new ModelExample($app->getContainer()->dataDriver))->get();
-
-        foreach($server->connections as $fd) {
-            $server->push($fd, json_encode($message));
-        }
     });
 
     $server->on('message', function(Server $server, Frame $frame) use ($app) {
