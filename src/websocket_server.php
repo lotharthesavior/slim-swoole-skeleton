@@ -1,11 +1,11 @@
 <?php
 
 use \Slim\App;
-use App\Models\Todo;
+use App\Models\ModelExample;
 use Swoole\Http\Request;
 use Swoole\WebSocket\Frame;
 use Swoole\WebSocket\Server;
-use App\Services\SocketHandlers\TodoSocketHandler;
+use App\Services\SocketHandlers\ExampleSocketHandler;
 
 return function (App $app) {
     $server = new Server("0.0.0.0", 9502);
@@ -17,7 +17,7 @@ return function (App $app) {
     $server->on('open', function(Server $server, Swoole\Http\Request $request) use ($app) {
         echo "connection open: {$request->fd}\n";
 
-        $message = (new Todo($app->getContainer()->dataDriver))->get();
+        $message = (new ModelExample($app->getContainer()->dataDriver))->get();
 
         foreach($server->connections as $fd) {
             $server->push($fd, json_encode($message));

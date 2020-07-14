@@ -24,8 +24,20 @@ return function (App $app) {
         return $response;
     });
 
-    $app->get('/', function (Request $request, Response $response) {
-        
+    $app->get('/todos', function (Request $request, Response $response) {
+        throw Exception('Not implemented!');
+    });
+
+    $app->post('/todos', function (Request $request, Response $response) {
+        throw Exception('Not implemented!');
+    });
+
+    $app->put('/todos', function (Request $request, Response $response) {
+        throw Exception('Not implemented!');
+    });
+
+    $app->delete('/todos', function (Request $request, Response $response) {
+        throw Exception('Not implemented!');
     });
 
 };

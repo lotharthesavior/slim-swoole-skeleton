@@ -1,12 +1,13 @@
 <?php
 
-use \Monolog\Logger;
-use \Slim\Container;
-use App\Drivers\Data\Filesystem;
-use App\Services\TodoSocketHandler;
-use \Monolog\Handler\StreamHandler;
+use Slim\Container;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem as Flysystem;
+
+use App\Drivers\Data\Filesystem;
+use App\Services\SocketHandlers\ExampleSocketHandler;
 
 return function (Container $container) {
     $container['logger'] = function($c) {
@@ -26,6 +27,6 @@ return function (Container $container) {
     };
 
     $container['socketHandler'] = function($c) {
-        return new TodoSocketHandler($c);
+        return new ExampleSocketHandler($c);
     };
 };

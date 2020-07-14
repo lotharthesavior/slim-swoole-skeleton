@@ -52,7 +52,7 @@
         let itemValue = document.getElementById('todoitem').value;
 
         websocket.send(JSON.stringify({
-            "action": "createTodo",
+            "action": "create",
             "params": {
                 "content": itemValue,
             }

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Services\Exceptions;
+namespace App\Exceptions;
 
-use \Exception;
+use Exception;
 
 class InvalidActionException extends Exception
 {
