@@ -5,7 +5,7 @@ use App\Models\Todo;
 use Swoole\Http\Request;
 use Swoole\WebSocket\Frame;
 use Swoole\WebSocket\Server;
-use App\Services\TodoSocketHandler;
+use App\Services\SocketHandlers\TodoSocketHandler;
 
 return function (App $app) {
     $server = new Server("0.0.0.0", 9502);
@@ -27,7 +27,6 @@ return function (App $app) {
     $server->on('message', function(Server $server, Frame $frame) use ($app) {
         echo "received message: {$frame->data}\n";
 
-        // invoke the instance
         $message = ($app->getContainer()->socketHandler)($frame->data);
 
         foreach($server->connections as $fd) {

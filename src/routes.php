@@ -24,4 +24,8 @@ return function (App $app) {
         return $response;
     });
 
+    $app->get('/', function (Request $request, Response $response) {
+        
+    });
+
 };

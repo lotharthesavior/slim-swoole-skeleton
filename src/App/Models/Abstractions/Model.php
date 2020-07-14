@@ -1,15 +1,12 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Abstractions;
 
 use App\Models\Interfaces\SimpleCrudInterface;
 use App\Drivers\Data\Interfaces\DataDriverInterface;
 
-class Todo implements SimpleCrudInterface
+abstract class Model implements SimpleCrudInterface
 {
-    /** @var string */
-    protected $table = 'todos';
-
     /** @var DataDriverInterface */
     protected $dataDriver;
 
@@ -29,6 +26,7 @@ class Todo implements SimpleCrudInterface
     }
 
     /**
+     * @param int $id
      * @param array $data
      *
      * @return bool

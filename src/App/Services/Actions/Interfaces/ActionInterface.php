@@ -2,7 +2,7 @@
 
 namespace App\Services\Actions\Interfaces;
 
-interface TodoActionInterface
+interface ActionInterface
 {
     public function execute();
 }

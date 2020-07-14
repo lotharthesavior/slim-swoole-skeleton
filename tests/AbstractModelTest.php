@@ -1,13 +1,15 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use App\Models\Todo;
-use App\Drivers\Data\Interfaces\DataDriverInterface;
-use App\Drivers\Data\Filesystem;
+
 use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem as Flysystem;
 
-class TodoTest extends TestCase
+use App\Models\ModelExample;
+use App\Drivers\Data\Interfaces\DataDriverInterface;
+use App\Drivers\Data\Filesystem;
+
+class AbstractModelTest extends TestCase
 {
     /** @var Flysystem */
     protected static $flysystem;
@@ -84,9 +86,9 @@ class TodoTest extends TestCase
         $this->assertCount(0, $existentTodoItems);
     }
 
-    private function createDummyTodoItem() : Todo
+    private function createDummyTodoItem() : ModelExample
     {
-        $todo = new Todo(self::$dataDriver);
+        $todo = new ModelExample(self::$dataDriver);
 
         $todo->create(['content' => $this->sampleTodoContent]);
 
