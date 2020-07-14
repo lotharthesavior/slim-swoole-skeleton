@@ -28,7 +28,7 @@
         "mockery/mockery": "^1.4"
     },
     "scripts": {
-        "tests": [
+        "test": [
             "vendor/bin/phpunit tests"
         ]
     }
