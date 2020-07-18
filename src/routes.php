@@ -1,6 +1,6 @@
 <?php
 
-use \Slim\App;
+use Slim\App;
 use App\Models\Todo;
 use App\Drivers\Data\Filesystem;
 use League\Flysystem\Adapter\Local;
@@ -24,20 +24,6 @@ return function (App $app) {
         return $response;
     });
 
-    $app->get('/todos', function (Request $request, Response $response) {
-        throw Exception('Not implemented!');
-    });
-
-    $app->post('/todos', function (Request $request, Response $response) {
-        throw Exception('Not implemented!');
-    });
-
-    $app->put('/todos', function (Request $request, Response $response) {
-        throw Exception('Not implemented!');
-    });
-
-    $app->delete('/todos', function (Request $request, Response $response) {
-        throw Exception('Not implemented!');
-    });
+    return (require __DIR__ . '/App/Http/todo_resource_routes.php')($app);
 
 };

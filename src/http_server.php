@@ -1,7 +1,7 @@
 <?php
 
-use \Slim\App;
-use \Pachico\SlimSwoole\BridgeManager;
+use Slim\App;
+use Pachico\SlimSwoole\BridgeManager;
 
 return function (App $app) {
     /**
@@ -17,7 +17,7 @@ return function (App $app) {
     /**
      * We register the on "start" event
      */
-    $http->on("start", function (\swoole_http_server $server) {
+    $http->on("start", function (swoole_http_server $server) {
         echo sprintf('Swoole http server is started at http://%s:%s', $server->host, $server->port), PHP_EOL;
     });
 

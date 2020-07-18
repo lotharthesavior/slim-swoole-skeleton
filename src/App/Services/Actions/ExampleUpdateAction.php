@@ -21,7 +21,7 @@ class ExampleUpdateAction extends AbstractAction
         $data['content'] = $this->data['content'];
         $id = (int) $this->data['id'];
 
-        if ($id = $this->model->update($id, $data)) {
+        if ($this->model->update($id, $data)) {
             return $this->model->get($id);
         }
 

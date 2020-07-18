@@ -15,7 +15,9 @@
         "slim/php-view": "^2.0",
         "monolog/monolog": "^1.17",
         "league/flysystem": "^1.0",
-        "pachico/slim-swoole": "^0.3.0"
+        "pachico/slim-swoole": "^0.3.0",
+        "guzzlehttp/guzzle": "^7.0",
+        "symfony/validator": "^5.1"
     },
     "autoload": {
         "psr-4": {
@@ -29,7 +31,7 @@
     },
     "scripts": {
         "test": [
-            "vendor/bin/phpunit tests"
+            "vendor/bin/phpunit tests --testsuite Safe"
         ]
     }
 }

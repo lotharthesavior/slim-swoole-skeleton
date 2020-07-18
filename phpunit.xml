@@ -1,0 +1,11 @@
+<phpunit bootstrap="vendor/autoload.php">
+  <testsuites>
+    <testsuite name="Safe">
+      <file>tests/AbstractModelTest.php</file>
+      <file>tests/ExampleSocketHandlerTest.php</file>
+    </testsuite>
+    <testsuite name="Api">
+      <file>tests/Api/ExampleApiTest.php</file>
+    </testsuite>
+  </testsuites>
+</phpunit>

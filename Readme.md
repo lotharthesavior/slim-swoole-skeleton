@@ -20,11 +20,19 @@ The data is being kept in the filesystem, the only driver available right now. I
 
 To be able to use the filesystem data persistence, create the directory at the root of this project: `/data/todos`.
 
-## To start HTTP Server
+### Http
 
-(using swoole)
+Routes are specified at the file `src/routes.php`. The specific resources routes are intended to be kept at `/src/App/Http/todo_resource_routes.php`.
 
-This is how your index.php file should look like:
+#### Validation
+
+The request validations are done via **Middlewares**. These Middlewares can be found at `src/App/Http/Middlewares`.
+
+#### To start HTTP Server
+
+**(using swoole)**
+
+This is how your `index.php` file should look like:
 
 ```php
 (require __DIR__ . '/src/http_server.php')($app); // <-- swoole http server
@@ -35,7 +43,7 @@ This is how your index.php file should look like:
 php index.php
 ```
 
-(using CGI server)
+**(using CGI server)**
 - first we have to comment out the swoole server and uncomment the normal application start, it would look like this after this:
 ```php
 // (require __DIR__ . '/src/http_server.php')($app); // <-- swoole http server
@@ -45,8 +53,9 @@ $app->run(); // <-- cgi http servers
 ```shell
 php -S localhost:8080
 ```
+### Socket
 
-## To start Socket Server
+#### To start Socket Server
 
 ```shell
 php index.php --websocket
@@ -55,5 +64,5 @@ php index.php --websocket
 ## Todo
 
 - Prepare HTTP Api for data routines
-- Finalize the data cycle example (the remaining CRUD operations)
-- Enhance the UI for a better presentaiton
+- Authorization Cycle
+- Enhance the example's UI

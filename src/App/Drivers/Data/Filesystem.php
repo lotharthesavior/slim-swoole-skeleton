@@ -92,6 +92,7 @@ class Filesystem implements DataDriverInterface
     private function getSingleRecord(string $table, int $id) : array
     {
         $recordAddress = $this->getRecordAddress($table, (int) $id);
+
         if (!$this->filesystem->has($recordAddress)) {
             throw new RecordNotFoundException('Record not found!');
         }
@@ -163,7 +164,15 @@ class Filesystem implements DataDriverInterface
     {
         $recordsList = $this->filesystem->listContents($this->getRecordAddress($table));
 
-        return count($recordsList) + 1;
+        $recordsList = array_map(function($item){
+            return (int) $item['filename'];
+        }, $recordsList);
+
+        if (empty($recordsList)) {
+            return 1;
+        }
+        
+        return max($recordsList) + 1;
     }
 
     /**
