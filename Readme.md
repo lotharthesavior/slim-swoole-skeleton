@@ -19,6 +19,10 @@ The data is being kept in the filesystem, the only driver available right now. I
 
 To be able to use the filesystem data persistence, create the directory at the root of this project: `/data/todos`.
 
+### Installation
+
+The current version uses filesystem to persist data. For that to work right out of the box with the existent example model you just need to create the directory at the root of the project: `data/todos`.
+
 ### Http
 
 Routes are specified at the file `src/routes.php`. The specific resources routes are intended to be kept at `/src/App/Http/todo_resource_routes.php`.
