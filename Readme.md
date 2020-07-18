@@ -11,7 +11,6 @@ The frontend is built using AlpineJS and uses JS Events to update components bas
 - Slim Framework (https://www.slimframework.com/)
 - Swoole (PHP Extension) (https://www.swoole.co.uk)
 - PHPUnit (https://phpunit.de)
-- PHP League Flysystem (https://flysystem.thephpleague.com)
 - AlpineJS for UI (https://github.com/alpinejs/alpine)
 
 ## Details
