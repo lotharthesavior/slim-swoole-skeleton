@@ -31,7 +31,7 @@ class ExampleSocketHandler extends SocketHandler
 
         $model = ModelExample::class;
 
-        switch($parsedData['action']) {
+        switch ($parsedData['action']) {
 
             case self::READ_ACTION:
                 return new ExampleGetAction(

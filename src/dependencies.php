@@ -9,7 +9,7 @@ use League\Flysystem\Filesystem as Flysystem;
 use App\Drivers\Data\Filesystem;
 use App\Services\SocketHandlers\ExampleSocketHandler;
 
-return function (Container $container) {
+return function(Container $container) {
     $container['logger'] = function($c) {
         $logger = new Logger('my_logger');
         $file_handler = new StreamHandler(__DIR__ . '/../logs/app.log');
