@@ -65,7 +65,7 @@ class IndexExampleTodoMiddleware implements RequestValidationMiddlewareInterface
             ]);
         }
 
-        foreach ($violations as $violation){
+        foreach ($violations as $violation) {
             $errors[] = $violation->getMessage();
         }
 

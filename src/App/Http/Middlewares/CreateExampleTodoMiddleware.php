@@ -70,7 +70,7 @@ class CreateExampleTodoMiddleware implements RequestValidationMiddlewareInterfac
             new Type('string'),
         ]);
 
-        foreach ($violations as $violation){
+        foreach ($violations as $violation) {
             $errors[] = $violation->getMessage();
         }
 

@@ -32,7 +32,7 @@ class ExampleTodoController extends Controller
             $model
         );
 
-        try{
+        try {
             return json_response($response, '', 200, null, null, $action->execute());
         } catch (Exception $e) {
             return json_response($response, 'error', 500, $e->getMessage());
@@ -54,7 +54,7 @@ class ExampleTodoController extends Controller
             $model
         );
 
-        try{
+        try {
             $result = $action->execute();
             return json_response($response, '', 200, null, null, $result->toArray());
         } catch (Exception $e) {
@@ -77,7 +77,7 @@ class ExampleTodoController extends Controller
             $model
         );
 
-        try{
+        try {
             $result = $action->execute();
             return json_response($response, '', 201, null, null, $result->toArray());
         } catch (Exception $e) {
@@ -101,7 +101,7 @@ class ExampleTodoController extends Controller
             $model
         );
 
-        try{
+        try {
             $result = $action->execute();
             return json_response($response, '', 200, null, null, $result->toArray());
         } catch (Exception $e) {
@@ -124,7 +124,7 @@ class ExampleTodoController extends Controller
             $model
         );
 
-        try{
+        try {
             $action->execute();
             return json_response($response, 'success', 200, 'Item deleted successfully!', null);
         } catch (Exception $e) {
