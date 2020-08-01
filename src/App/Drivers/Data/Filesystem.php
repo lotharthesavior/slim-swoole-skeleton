@@ -114,7 +114,7 @@ class Filesystem implements DataDriverInterface
         }
 
         $contents = $this->filesystem->listContents($recordAddress);
-        return array_map(function($record){
+        return array_map(function($record) {
             return $this->recordWrapper(
                 (string) $record['filename'],
                 json_decode($this->filesystem->read($record['path']), true)
@@ -164,7 +164,7 @@ class Filesystem implements DataDriverInterface
     {
         $recordsList = $this->filesystem->listContents($this->getRecordAddress($table));
 
-        $recordsList = array_map(function($item){
+        $recordsList = array_map(function($item) {
             return (int) $item['filename'];
         }, $recordsList);
 

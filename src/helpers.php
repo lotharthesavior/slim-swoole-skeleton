@@ -52,7 +52,7 @@ function get_query_params(Request $request) : array {
     $data = array_filter(explode('&', $data));
 
     $rearrangedData = [];
-    foreach($data as $item) {
+    foreach ($data as $item) {
         $item = explode('=', $item);
         $rearrangedData[$item[0]] = $item[1];
     }

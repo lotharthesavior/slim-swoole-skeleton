@@ -8,9 +8,9 @@ use League\Flysystem\Filesystem as Flysystem;
 use \Psr\Http\Message\ResponseInterface as Response;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 
-return function (App $app) {
+return function(App $app) {
 
-    $app->get('/', function (Request $request, Response $response) {
+    $app->get('/', function(Request $request, Response $response) {
         
         // getting todos
         // $todo = new Todo($this->dataDriver);

@@ -63,7 +63,7 @@ abstract class Model implements SimpleCrudInterface, ArrayAccess
      *
      * @return bool
      */
-    public function offsetExists ( $offset )
+    public function offsetExists($offset)
     {
         return isset($this->{$offset});
     }
@@ -73,7 +73,7 @@ abstract class Model implements SimpleCrudInterface, ArrayAccess
      *
      * @return mixed
      */
-    public function offsetGet ( $offset )
+    public function offsetGet($offset)
     {
         return $this->{$offset};
     }
@@ -84,7 +84,7 @@ abstract class Model implements SimpleCrudInterface, ArrayAccess
      *
      * @return void
      */
-    public function  offsetSet ( $offset , $value )
+    public function  offsetSet($offset, $value)
     {
         $this->{$offset} = $value;
     }
@@ -94,7 +94,7 @@ abstract class Model implements SimpleCrudInterface, ArrayAccess
      *
      * @return void
      */
-    public function offsetUnset ( $offset )
+    public function offsetUnset($offset)
     {
         unset($this->{$offset});
     }
