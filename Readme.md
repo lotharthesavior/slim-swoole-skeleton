@@ -1,6 +1,8 @@
 # Slim 3 - Swoole - Skeleton
 
 ![PHP Composer](https://github.com/lotharthesavior/slim-swoole-skeleton/workflows/PHP%20Composer/badge.svg)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/lotharthesavior/slim-swoole-skeleton/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/lotharthesavior/slim-swoole-skeleton/?branch=master)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/lotharthesavior/slim-swoole-skeleton/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 
 This application is a skeleton for Slim3/Swoole application using HTTP and Socket servers. There are a few TODO's at the end of this document set as goals for this to serve as a complete example.
 
