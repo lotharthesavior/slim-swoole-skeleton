@@ -8,9 +8,8 @@ use League\Flysystem\Filesystem as Flysystem;
 use \Psr\Http\Message\ResponseInterface as Response;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 
-return function(App $app) {
-
-    $app->get('/', function(Request $request, Response $response) {
+return function (App $app) {
+    $app->get('/', function (Request $request, Response $response) {
         
         // getting todos
         // $todo = new Todo($this->dataDriver);
@@ -25,5 +24,4 @@ return function(App $app) {
     });
 
     return (require __DIR__ . '/App/Http/todo_resource_routes.php')($app);
-
 };

@@ -9,21 +9,12 @@ use App\Services\Actions\Interfaces\ActionInterface;
 
 abstract class SocketHandler implements SocketHandlerInterface
 {
-    /** @var string */
-    const READ_ACTION = 'get';
-
-    /** @var string */
-    const CREATE_ACTION = 'create';
-
-    /** @var string */
-    const UPDATE_ACTION = 'update';
-
-    /** @var string */
-    const DELETE_ACTION = 'delete';
-
     /** @var Container */
     protected $container;
 
+    /**
+     * @param Container $c
+     */
     public function __construct($c)
     {
         $this->container = $c;
@@ -34,7 +25,9 @@ abstract class SocketHandler implements SocketHandlerInterface
      */
     public function __invoke(string $data)
     {
+        /** @var ActionInterface */
         $action = $this->parseData($data);
+        
         return $action->execute();
     }
 
@@ -52,7 +45,9 @@ abstract class SocketHandler implements SocketHandlerInterface
     /**
      * @param array $data
      *
+     * @return void
+     *
      * @throws InvalidArgumentException
      */
-    abstract public function validateData(array $data);
+    abstract public function validateData(array $data) : void;
 }

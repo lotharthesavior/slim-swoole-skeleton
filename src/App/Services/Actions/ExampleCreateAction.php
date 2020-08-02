@@ -4,13 +4,18 @@ namespace App\Services\Actions;
 
 use Exception;
 use InvalidArgumentException;
-
+use App\Models\ModelExample;
 use App\Drivers\Data\Interfaces\DataDriverInterface;
 use App\Services\Actions\Abstractions\AbstractAction;
-use App\Models\ModelExample;
+use App\Services\Actions\Traits\CRUDActionTrait;
 
 class ExampleCreateAction extends AbstractAction
 {
+    use CRUDActionTrait;
+
+    /** @var string */
+    protected $name = 'example-create-action';
+
     /**
      * @return array
      *

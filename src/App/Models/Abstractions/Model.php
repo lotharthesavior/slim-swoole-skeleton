@@ -25,7 +25,7 @@ abstract class Model implements SimpleCrudInterface, ArrayAccess
      *
      * @return int|bool
      */
-    public function create(array $data) 
+    public function create(array $data)
     {
         return $this->dataDriver->create($this->table, $data);
     }
@@ -84,7 +84,7 @@ abstract class Model implements SimpleCrudInterface, ArrayAccess
      *
      * @return void
      */
-    public function  offsetSet($offset, $value)
+    public function offsetSet($offset, $value)
     {
         $this->{$offset} = $value;
     }
@@ -103,5 +103,4 @@ abstract class Model implements SimpleCrudInterface, ArrayAccess
      * @return array
      */
     abstract public function toArray() : array;
-
 }

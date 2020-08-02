@@ -2,8 +2,7 @@
 
 namespace App\Services\SocketHandlers\Interfaces;
 
-use \Exception;
-
+use Exception;
 use App\Services\Actions\Interfaces\ActionInterface;
 
 interface SocketHandlerInterface

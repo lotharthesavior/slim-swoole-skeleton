@@ -18,7 +18,7 @@ class GetExampleTodoMiddleware implements RequestValidationMiddlewareInterface
      * @param callable $next
      *
      * @return Response
-     */   
+     */
     public function __invoke(Request $request, Response $response, $next)
     {
         try {

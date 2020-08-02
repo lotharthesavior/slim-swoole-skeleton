@@ -8,10 +8,16 @@ use InvalidArgumentException;
 use App\Services\Actions\Interfaces\ActionInterface;
 use App\Drivers\Data\Interfaces\DataDriverInterface;
 use App\Services\Actions\Abstractions\AbstractAction;
+use App\Services\Actions\Traits\CRUDActionTrait;
 use App\Models\ModelExample;
 
 class ExampleDeleteAction extends AbstractAction
 {
+    use CRUDActionTrait;
+
+    /** @var string */
+    protected $name = 'example-delete-action';
+    
     /**
      * @return void
      */

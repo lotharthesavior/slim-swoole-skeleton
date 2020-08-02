@@ -44,7 +44,7 @@ class ExampleTodoController extends Controller
      * @param Response $response
      * @param array $args
      */
-    public function show(Request $request, Response $response, $args) 
+    public function show(Request $request, Response $response, $args)
     {
         $model = ModelExample::class;
 
@@ -66,7 +66,7 @@ class ExampleTodoController extends Controller
      * @param Request $request
      * @param Response $response
      */
-    public function create(Request $request, Response $response) 
+    public function create(Request $request, Response $response)
     {
         $data = $request->getParsedBody()['data'];
         $model = ModelExample::class;
@@ -90,7 +90,7 @@ class ExampleTodoController extends Controller
      * @param Response $response
      * @param array $args
      */
-    public function update(Request $request, Response $response, array $args) 
+    public function update(Request $request, Response $response, array $args)
     {
         $data = $request->getParsedBody()['data'];
         $model = ModelExample::class;
@@ -114,7 +114,7 @@ class ExampleTodoController extends Controller
      * @param Response $response
      * @param array $args
      */
-    public function delete(Request $request, Response $response, $args) 
+    public function delete(Request $request, Response $response, $args)
     {
         $model = ModelExample::class;
 
@@ -131,5 +131,4 @@ class ExampleTodoController extends Controller
             return json_response($response, 'error', 500, $e->getMessage());
         }
     }
-
 }

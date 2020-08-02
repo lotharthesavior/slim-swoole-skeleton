@@ -23,8 +23,8 @@ class Filesystem implements DataDriverInterface
      * @param string $format
      */
     public function __construct(
-        string $database, 
-        Flysystem $filesystem, 
+        string $database,
+        Flysystem $filesystem,
         string $format = 'json'
     ) {
         $this->database = $database;
@@ -86,7 +86,7 @@ class Filesystem implements DataDriverInterface
     /**
      * @param string $table
      * @param int $id
-     * 
+     *
      * @return array
      */
     private function getSingleRecord(string $table, int $id) : array
@@ -114,7 +114,7 @@ class Filesystem implements DataDriverInterface
         }
 
         $contents = $this->filesystem->listContents($recordAddress);
-        return array_map(function($record) {
+        return array_map(function ($record) {
             return $this->recordWrapper(
                 (string) $record['filename'],
                 json_decode($this->filesystem->read($record['path']), true)
@@ -164,7 +164,7 @@ class Filesystem implements DataDriverInterface
     {
         $recordsList = $this->filesystem->listContents($this->getRecordAddress($table));
 
-        $recordsList = array_map(function($item) {
+        $recordsList = array_map(function ($item) {
             return (int) $item['filename'];
         }, $recordsList);
 
@@ -178,12 +178,11 @@ class Filesystem implements DataDriverInterface
     /**
      * @param string $id
      * @param array $record
-     * 
+     *
      * @return array
      */
     private function recordWrapper(string $id, array $record) : array
     {
         return array_merge($record, ['id' => $id]);
     }
-
 }

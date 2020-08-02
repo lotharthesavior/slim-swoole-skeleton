@@ -15,8 +15,8 @@ use Psr\Http\Message\ServerRequestInterface as Request;
  * @return Response
  */
 function json_response(
-    Response $response, 
-    string $status, 
+    Response $response,
+    string $status,
     int $statusCode,
     $message = null,
     $errors = null,
@@ -46,7 +46,8 @@ function json_response(
  *
  * @return array
  */
-function get_query_params(Request $request) : array {
+function get_query_params(Request $request) : array
+{
     $data = $request->getUri()->getQuery();
 
     $data = array_filter(explode('&', $data));

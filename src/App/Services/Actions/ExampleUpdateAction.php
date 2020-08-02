@@ -8,10 +8,16 @@ use InvalidArgumentException;
 use App\Services\Actions\Interfaces\ActionInterface;
 use App\Drivers\Data\Interfaces\DataDriverInterface;
 use App\Services\Actions\Abstractions\AbstractAction;
+use App\Services\Actions\Traits\CRUDActionTrait;
 use App\Models\ModelExample;
 
 class ExampleUpdateAction extends AbstractAction
 {
+    use CRUDActionTrait;
+
+    /** @var string */
+    protected $name = 'example-update-action';
+    
     /**
      * @return void
      */

@@ -2,20 +2,31 @@
 
 namespace App\Services\SocketHandlers;
 
-use \Exception;
-use \InvalidArgumentException;
-
+use Exception;
+use InvalidArgumentException;
+use App\Models\ModelExample;
 use App\Services\Actions\Interfaces\ActionInterface;
 use App\Services\Actions\ExampleGetAction;
 use App\Services\Actions\ExampleCreateAction;
 use App\Services\Actions\ExampleUpdateAction;
 use App\Services\Actions\ExampleDeleteAction;
 use App\Services\SocketHandlers\Abstractions\SocketHandler;
-use App\Models\ModelExample;
 use App\Exceptions\InvalidActionException;
 
 class ExampleSocketHandler extends SocketHandler
 {
+    /** @var string */
+    const READ_ACTION = 'get';
+
+    /** @var string */
+    const CREATE_ACTION = 'create';
+
+    /** @var string */
+    const UPDATE_ACTION = 'update';
+
+    /** @var string */
+    const DELETE_ACTION = 'delete';
+
     /**
      * @param string $data
      * @return ActionInterface
@@ -30,7 +41,7 @@ class ExampleSocketHandler extends SocketHandler
         $this->validateData($parsedData);
 
         $model = ModelExample::class;
-
+        
         switch ($parsedData['action']) {
 
             case self::READ_ACTION:
@@ -75,13 +86,14 @@ class ExampleSocketHandler extends SocketHandler
     /**
      * @param array $data
      *
+     * @return void
+     *
      * @throws InvalidArgumentException
      */
-    public function validateData(array $data)
+    public function validateData(array $data) : void
     {
         if (!isset($data['params'])) {
             throw new InvalidArgumentException('Missing params key in data!');
         }
     }
-
 }

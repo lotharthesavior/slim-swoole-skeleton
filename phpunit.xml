@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="vendor/autoload.php">
+<phpunit 
+    bootstrap="vendor/autoload.php"
+    printerClass="Codedungeon\PHPUnitPrettyResultPrinter\Printer">
   <testsuites>
     <testsuite name="Safe">
       <file>tests/AbstractModelTest.php</file>
       <file>tests/ExampleSocketHandlerTest.php</file>
+      <file>tests/SocketMessageRouterTest.php</file>
     </testsuite>
     <testsuite name="Api">
       <file>tests/Api/ExampleApiTest.php</file>

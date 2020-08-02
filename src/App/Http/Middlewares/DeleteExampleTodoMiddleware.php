@@ -18,7 +18,7 @@ class DeleteExampleTodoMiddleware implements RequestValidationMiddlewareInterfac
      * @param callable $next
      *
      * @return Response
-     */   
+     */
     public function __invoke(Request $request, Response $response, $next)
     {
         try {

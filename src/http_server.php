@@ -3,7 +3,7 @@
 use Slim\App;
 use Pachico\SlimSwoole\BridgeManager;
 
-return function(App $app) {
+return function (App $app) {
     /**
      * We instanciate the BridgeManager (this library)
      */
@@ -17,7 +17,7 @@ return function(App $app) {
     /**
      * We register the on "start" event
      */
-    $http->on("start", function(swoole_http_server $server) {
+    $http->on("start", function (swoole_http_server $server) {
         echo sprintf('Swoole http server is started at http://%s:%s', $server->host, $server->port), PHP_EOL;
     });
 
@@ -28,7 +28,7 @@ return function(App $app) {
      */
     $http->on(
         "request",
-        function(swoole_http_request $swooleRequest, swoole_http_response $swooleResponse) use ($bridgeManager) {
+        function (swoole_http_request $swooleRequest, swoole_http_response $swooleResponse) use ($bridgeManager) {
             $bridgeManager->process($swooleRequest, $swooleResponse)->end();
         }
     );

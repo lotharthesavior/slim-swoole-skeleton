@@ -11,8 +11,8 @@ use App\Http\Middlewares\CreateExampleTodoMiddleware;
 use App\Http\Middlewares\UpdateExampleTodoMiddleware;
 use App\Http\Middlewares\DeleteExampleTodoMiddleware;
 
-return function(App $app) {
-    $app->group('/api', function(App $app) {
+return function (App $app) {
+    $app->group('/api', function (App $app) {
         $app->get('/todos', ExampleTodoController::class . ':index')
             ->add(IndexExampleTodoMiddleware::class);
 

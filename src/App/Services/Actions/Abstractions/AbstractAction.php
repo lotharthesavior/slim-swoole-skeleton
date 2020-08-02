@@ -14,29 +14,12 @@ abstract class AbstractAction implements ActionInterface
     /** @var array */
     protected $data;
 
-    /** @var DataDriverInterface */
-    protected $dataDriver;
-
-    /** @var SimpleCrudInterface */
-    protected $model;
-
     /**
-     * @param array $data
-     * @param DataDriverInterface $dataDriver
-     * @param SimpleCrudInterface $modelClass
-     *
-     * @throws Exception
+     * @return string
      */
-    public function __construct(
-        array $data,
-        DataDriverInterface $dataDriver,
-        string $modelClass
-    ) {
-        $this->validateData($data);
-
-        $this->data = $data;
-        $this->dataDriver = $dataDriver;
-        $this->model = new $modelClass($this->dataDriver);
+    public function getName() : string
+    {
+        return $this->name;
     }
 
     /**
@@ -48,7 +31,7 @@ abstract class AbstractAction implements ActionInterface
     abstract public function validateData(array $data) : void;
 
     /**
-     * 
+     *
      */
     abstract public function execute();
 }

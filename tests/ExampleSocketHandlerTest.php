@@ -1,20 +1,20 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
-use Slim\Container;
+namespace Tests;
 
+use Mockery;
+use Exception;
+use InvalidArgumentException;
+use Slim\Container;
+use App\Drivers\Data\Filesystem;
 use App\Services\SocketHandlers\Abstractions\SocketHandler;
 use App\Services\SocketHandlers\ExampleSocketHandler;
 use App\Services\Actions\ExampleCreateAction;
 use App\Services\Actions\ExampleUpdateAction;
 use App\Services\Actions\ExampleDeleteAction;
-use App\Drivers\Data\Filesystem;
 
-class ExampleSocketHandlerTest extends TestCase
+class ExampleSocketHandlerTest extends SocketHandlerTestCase
 {
-    /** @var Container */
-    protected $container;
-
     /** @var string */
     const DEFAULT_CONTENT = 'Some content';
 
@@ -23,7 +23,7 @@ class ExampleSocketHandlerTest extends TestCase
      */
     public function setUp() : void
     {
-        $this->mockAppContainer();
+        $this->mockAppContainerFilesystem();
     }
 
     /**
@@ -32,14 +32,16 @@ class ExampleSocketHandlerTest extends TestCase
     public function actionsDataProvider() : array
     {
         return [
-            [SocketHandler::READ_ACTION],
-            [SocketHandler::CREATE_ACTION],
-            [SocketHandler::UPDATE_ACTION],
-            [SocketHandler::DELETE_ACTION],
+            [ExampleSocketHandler::READ_ACTION],
+            [ExampleSocketHandler::CREATE_ACTION],
+            [ExampleSocketHandler::UPDATE_ACTION],
+            [ExampleSocketHandler::DELETE_ACTION],
         ];
     }
 
     /**
+     * @param string $action
+     *
      * @dataProvider actionsDataProvider
      */
     public function testThrowExceptionWhenDataWithoutContentAtAction(
@@ -61,9 +63,9 @@ class ExampleSocketHandlerTest extends TestCase
     public function actionsParserDataProvider() : array
     {
         return [
-            [SocketHandler::CREATE_ACTION, ExampleCreateAction::class],
-            [SocketHandler::UPDATE_ACTION, ExampleUpdateAction::class],
-            [SocketHandler::DELETE_ACTION, ExampleDeleteAction::class],
+            [ExampleSocketHandler::CREATE_ACTION, ExampleCreateAction::class],
+            [ExampleSocketHandler::UPDATE_ACTION, ExampleUpdateAction::class],
+            [ExampleSocketHandler::DELETE_ACTION, ExampleDeleteAction::class],
         ];
     }
 
@@ -85,7 +87,7 @@ class ExampleSocketHandlerTest extends TestCase
 
     public function testGetActionReadsRecordAndReturnsResource()
     {
-        $data = $this->prepareData(SocketHandler::READ_ACTION);
+        $data = $this->prepareData(ExampleSocketHandler::READ_ACTION);
         $socketHandler = $this->getSocketHandler();
 
         $action = $socketHandler->parseData($data);
@@ -97,7 +99,7 @@ class ExampleSocketHandlerTest extends TestCase
 
     public function testGetActionReadsAllRecordAndReturnsResource()
     {
-        $data = $this->prepareData(SocketHandler::READ_ACTION . '-all');
+        $data = $this->prepareData(ExampleSocketHandler::READ_ACTION . '-all');
         $socketHandler = $this->getSocketHandler();
 
         $action = $socketHandler->parseData($data);
@@ -109,7 +111,7 @@ class ExampleSocketHandlerTest extends TestCase
 
     public function testCreateActionCreatesRecordAndReturnsResource()
     {
-        $data = $this->prepareData(SocketHandler::CREATE_ACTION);
+        $data = $this->prepareData(ExampleSocketHandler::CREATE_ACTION);
         $socketHandler = $this->getSocketHandler();
 
         $action = $socketHandler->parseData($data);
@@ -121,7 +123,7 @@ class ExampleSocketHandlerTest extends TestCase
 
     public function testUpdateActionUpdatesRecordAndReturnsResource()
     {
-        $data = $this->prepareData(SocketHandler::UPDATE_ACTION);
+        $data = $this->prepareData(ExampleSocketHandler::UPDATE_ACTION);
         $socketHandler = $this->getSocketHandler();
 
         $action = $socketHandler->parseData($data);
@@ -133,30 +135,13 @@ class ExampleSocketHandlerTest extends TestCase
 
     public function testDeleteActionDeletesRecordAndReturnsBoolean()
     {
-        $data = $this->prepareData(SocketHandler::DELETE_ACTION);
+        $data = $this->prepareData(ExampleSocketHandler::DELETE_ACTION);
         $socketHandler = $this->getSocketHandler();
 
         $action = $socketHandler->parseData($data);
         $result = $action->execute();
 
         $this->assertTrue($result);
-    }
-
-    /**
-     * @return void
-     */
-    private function mockAppContainer() : void
-    {
-        $filesystem = Mockery::mock(Filesystem::class);
-        $filesystem->shouldReceive('create')->andReturn(1);
-        $filesystem->shouldReceive('update')->andReturn(true);
-        $filesystem->shouldReceive('delete')->andReturn(true);
-        $filesystem->shouldReceive('get')->andReturn([
-            'content' => self::DEFAULT_CONTENT,
-        ]);
-
-        $this->container = new stdClass;
-        $this->container->dataDriver = $filesystem;
     }
 
     /**
@@ -174,7 +159,7 @@ class ExampleSocketHandlerTest extends TestCase
     private function prepareData(string $action): string
     {
         switch ($action) {
-            case SocketHandler::READ_ACTION:
+            case ExampleSocketHandler::READ_ACTION:
                 return json_encode([
                     'action' => $action,
                     'params' => [
@@ -183,14 +168,14 @@ class ExampleSocketHandlerTest extends TestCase
                 ]);
                 break;
 
-            case SocketHandler::READ_ACTION . '-all':
+            case ExampleSocketHandler::READ_ACTION . '-all':
                 return json_encode([
-                    'action' => SocketHandler::READ_ACTION,
+                    'action' => ExampleSocketHandler::READ_ACTION,
                     'params' => [],
                 ]);
                 break;
 
-            case SocketHandler::CREATE_ACTION:
+            case ExampleSocketHandler::CREATE_ACTION:
                 return json_encode([
                     'action' => $action,
                     'params' => [
@@ -199,7 +184,7 @@ class ExampleSocketHandlerTest extends TestCase
                 ]);
                 break;
 
-            case SocketHandler::UPDATE_ACTION:
+            case ExampleSocketHandler::UPDATE_ACTION:
                 return json_encode([
                     'action' => $action,
                     'params' => [
@@ -209,7 +194,7 @@ class ExampleSocketHandlerTest extends TestCase
                 ]);
                 break;
 
-            case SocketHandler::DELETE_ACTION:
+            case ExampleSocketHandler::DELETE_ACTION:
                 return json_encode([
                     'action' => $action,
                     'params' => [
@@ -218,5 +203,25 @@ class ExampleSocketHandlerTest extends TestCase
                 ]);
                 break;
         }
+    }
+
+    /**
+     * This requires Container to be mocked
+     *
+     * @return void
+     */
+    private function mockAppContainerFilesystem()
+    {
+        $this->mockAppContainer();
+
+        $filesystem = Mockery::mock(Filesystem::class);
+        $filesystem->shouldReceive('create')->andReturn(1);
+        $filesystem->shouldReceive('update')->andReturn(true);
+        $filesystem->shouldReceive('delete')->andReturn(true);
+        $filesystem->shouldReceive('get')->andReturn([
+            'content' => self::DEFAULT_CONTENT,
+        ]);
+
+        $this->container->dataDriver = $filesystem;
     }
 }

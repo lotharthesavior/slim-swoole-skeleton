@@ -60,14 +60,20 @@ php -S localhost:8080
 ```
 ### Socket
 
-#### To start Socket Server
+#### To start WebSocket Server
 
 ```shell
 php index.php --websocket
 ```
 
+#### To start TCP Socket Server
+
+```shell
+php index.php --tcpsocket
+```
+
 ## Todo
 
-- Prepare HTTP Api for data routines
+- Finish implementation (for usage, because it is already tested)  for the socket message router, so, when receiving a message it routes correctly according to configuration.
 - Authorization Cycle
 - Enhance the example's UI

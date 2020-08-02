@@ -1,13 +1,13 @@
 <?php
 
-use PHPUnit\Framework\TestCase;
-
-use League\Flysystem\Adapter\Local;
-use League\Flysystem\Filesystem as Flysystem;
+namespace Tests;
 
 use App\Models\ModelExample;
-use App\Drivers\Data\Interfaces\DataDriverInterface;
+use PHPUnit\Framework\TestCase;
 use App\Drivers\Data\Filesystem;
+use League\Flysystem\Adapter\Local;
+use League\Flysystem\Filesystem as Flysystem;
+use App\Drivers\Data\Interfaces\DataDriverInterface;
 
 class AbstractModelTest extends TestCase
 {
