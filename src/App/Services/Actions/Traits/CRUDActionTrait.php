@@ -2,6 +2,7 @@
 
 namespace App\Services\Actions\Traits;
 
+use App\Models\Interfaces\SimpleCrudInterface;
 use App\Drivers\Data\Interfaces\DataDriverInterface;
 
 /**
@@ -34,4 +35,6 @@ trait CRUDActionTrait
         $this->dataDriver = $dataDriver;
         $this->model = new $modelClass($this->dataDriver);
     }
+
+    abstract public function validateData(array $data) : void;
 }
