@@ -13,7 +13,6 @@ trait ProcedureActionTrait
      */
     public function __invoke(array $data)
     {
-        dd($this, $data);
         $this->validateData($data);
 
         $this->data = $data;
