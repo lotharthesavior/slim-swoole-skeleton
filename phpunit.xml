@@ -5,8 +5,6 @@
   <testsuites>
     <testsuite name="Safe">
       <file>tests/AbstractModelTest.php</file>
-      <file>tests/ExampleSocketHandlerTest.php</file>
-      <file>tests/SocketMessageRouterTest.php</file>
     </testsuite>
     <testsuite name="Api">
       <file>tests/Api/ExampleApiTest.php</file>

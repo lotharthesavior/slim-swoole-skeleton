@@ -20,7 +20,7 @@ trait CRUDActionTrait
     /**
      * @param array $data
      * @param DataDriverInterface $dataDriver
-     * @param SimpleCrudInterface $modelClass
+     * @param string $modelClass
      *
      * @throws Exception
      */

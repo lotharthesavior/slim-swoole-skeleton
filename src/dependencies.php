@@ -5,10 +5,8 @@ use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem as Flysystem;
-
 use App\Drivers\Data\Filesystem;
-// use App\Services\SocketHandlers\ExampleSocketHandler;
-use App\Services\SocketHandlers\SocketMessageRouter;
+use Conveyor\SocketHandlers\SocketMessageRouter;
 
 return function (Container $container) {
     $container['logger'] = function ($c) {
@@ -28,7 +26,6 @@ return function (Container $container) {
     };
 
     $container['socketHandler'] = function ($c) {
-        // return new ExampleSocketHandler($c);
         return new SocketMessageRouter($c);
     };
 };

@@ -6,7 +6,7 @@ use Exception;
 use InvalidArgumentException;
 
 use App\Drivers\Data\Interfaces\DataDriverInterface;
-use App\Services\Actions\Abstractions\AbstractAction;
+use Conveyor\Actions\Abstractions\AbstractAction;
 use App\Services\Actions\Traits\CRUDActionTrait;
 use App\Models\ModelExample;
 
