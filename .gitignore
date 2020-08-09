@@ -1,3 +1,6 @@
 vendor
 data
 .phpintel
+.env
+supervisord.log
+supervisord.pid

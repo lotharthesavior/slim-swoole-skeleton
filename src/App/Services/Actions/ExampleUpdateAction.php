@@ -19,15 +19,25 @@ class ExampleUpdateAction extends AbstractAction
     protected $name = 'example-update-action';
     
     /**
+     * @param array $data
+     *
      * @return void
+     *
+     * @throws InvalidArgumentException
+     * @throws Exception
      */
-    public function execute()
+    public function execute(array $data)
     {
-        $data = [];
-        $data['content'] = $this->data['content'];
+        /** @throws InvalidArgumentException */
+        $this->validateData($data['params']);
+
+        $this->data = $data['params'];
+
+        $dataArray = [];
+        $dataArray['content'] = $this->data['content'];
         $id = (int) $this->data['id'];
 
-        if ($this->model->update($id, $data)) {
+        if ($this->model->update($id, $dataArray)) {
             return $this->model->get($id);
         }
 

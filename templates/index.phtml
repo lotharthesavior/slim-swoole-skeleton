@@ -36,7 +36,7 @@
 </div>
 
 <script type="text/javascript">
-    var wsServer = 'ws://127.0.0.1:9502';
+    var wsServer = 'ws://127.0.0.1:9501';
     var websocket = new WebSocket(wsServer);
 
     function inputKeyUp(e) {
@@ -52,7 +52,7 @@
         let itemValue = document.getElementById('todoitem').value;
 
         websocket.send(JSON.stringify({
-            "action": "create",
+            "action": "example-create-action",
             "params": {
                 "content": itemValue,
             }
@@ -64,7 +64,7 @@
         console.log("Connected to WebSocket server.");
 
         websocket.send(JSON.stringify({
-            "action": "get",
+            "action": "example-get-action",
             "params": {}
         }));
     };

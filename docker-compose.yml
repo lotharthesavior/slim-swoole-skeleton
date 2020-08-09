@@ -1,0 +1,45 @@
+version: '3.7'
+
+services:
+
+  swoole-http:
+    build: 
+      context: ./docker/swoole
+      dockerfile: Dockerfile-http
+    container_name: swoole-server-http
+    working_dir: /var/www/html
+    environment:
+      DISABLE_DEFAULT_SERVER: 1
+      SERVICE_NAME: http
+    ports:
+      - 8383:8282
+    volumes:
+      - ${LOCAL_DIRECTORY}:${SERVER_DIRECTORY}
+
+  swoole-unixsocket:
+    build:
+      context: ./docker/swoole
+      dockerfile: Dockerfile-unixsocket
+    container_name: swoole-server-unixsocket
+    working_dir: /var/www/html
+    environment:
+      DISABLE_DEFAULT_SERVER: 1
+      SERVICE_NAME: unixsocket
+    ports:
+      - 9502:9502
+    volumes:
+      - ${LOCAL_DIRECTORY}:${SERVER_DIRECTORY}
+
+  swoole-websocket:
+    build:
+      context: ./docker/swoole
+      dockerfile: Dockerfile-websocket
+    container_name: swoole-server-websocket
+    working_dir: /var/www/html
+    environment:
+      DISABLE_DEFAULT_SERVER: 1
+      SERVICE_NAME: websocket
+    ports:
+      - 9501:9501
+    volumes:
+      - ${LOCAL_DIRECTORY}:${SERVER_DIRECTORY}

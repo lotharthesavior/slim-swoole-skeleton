@@ -8,10 +8,10 @@ use Swoole\WebSocket\Server;
 use App\Services\SocketHandlers\ExampleSocketHandler;
 
 return function (App $app) {
-    $server = new Server("0.0.0.0", 9502);
+    $server = new Server("0.0.0.0", 9501);
 
     $server->on("start", function (Server $server) use ($app) {
-        echo "Swoole WebSocket Server is started at http://127.0.0.1:9502\n";
+        echo "Swoole WebSocket Server is started at http://127.0.0.1:9501\n";
     });
 
     $server->on('open', function (Server $server, Swoole\Http\Request $request) use ($app) {

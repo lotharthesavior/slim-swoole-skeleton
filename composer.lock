@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1eb47c62093feca965c406a316c2742b",
+    "content-hash": "4ae101eda0034a9bdceb2c8d8cc1c9f3",
     "packages": [
         {
             "name": "dflydev/fig-cookies",
@@ -1419,16 +1419,16 @@
         },
         {
             "name": "wordstree/socket-conveyor",
-            "version": "0.0.1",
+            "version": "0.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/WordsTree/socket-conveyor.git",
-                "reference": "1bca77c83a5adf6fd7da25fb9b4cd3e953a88b97"
+                "reference": "930cfd84f06b5e83aa512d08c8815ce04d653cb1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/WordsTree/socket-conveyor/zipball/1bca77c83a5adf6fd7da25fb9b4cd3e953a88b97",
-                "reference": "1bca77c83a5adf6fd7da25fb9b4cd3e953a88b97",
+                "url": "https://api.github.com/repos/WordsTree/socket-conveyor/zipball/930cfd84f06b5e83aa512d08c8815ce04d653cb1",
+                "reference": "930cfd84f06b5e83aa512d08c8815ce04d653cb1",
                 "shasum": ""
             },
             "require": {
@@ -1458,7 +1458,7 @@
                 }
             ],
             "description": "A WebSocket/Socket message Router",
-            "time": "2020-08-08T16:19:24+00:00"
+            "time": "2020-08-09T02:05:15+00:00"
         }
     ],
     "packages-dev": [
@@ -1901,16 +1901,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.7.0",
+            "version": "v4.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "21dce06dfbf0365c6a7cc8fdbdc995926c6a9300"
+                "reference": "8c58eb4cd4f3883f82611abeac2efbc3dbed787e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/21dce06dfbf0365c6a7cc8fdbdc995926c6a9300",
-                "reference": "21dce06dfbf0365c6a7cc8fdbdc995926c6a9300",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/8c58eb4cd4f3883f82611abeac2efbc3dbed787e",
+                "reference": "8c58eb4cd4f3883f82611abeac2efbc3dbed787e",
                 "shasum": ""
             },
             "require": {
@@ -1918,8 +1918,8 @@
                 "php": ">=7.0"
             },
             "require-dev": {
-                "ircmaxell/php-yacc": "0.0.5",
-                "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0"
+                "ircmaxell/php-yacc": "^0.0.6",
+                "phpunit/phpunit": "^6.5 || ^7.0 || ^8.0 || ^9.0"
             },
             "bin": [
                 "bin/php-parse"
@@ -1927,7 +1927,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.7-dev"
+                    "dev-master": "4.8-dev"
                 }
             },
             "autoload": {
@@ -1949,7 +1949,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2020-07-25T13:18:53+00:00"
+            "time": "2020-08-09T10:23:20+00:00"
         },
         {
             "name": "phar-io/manifest",

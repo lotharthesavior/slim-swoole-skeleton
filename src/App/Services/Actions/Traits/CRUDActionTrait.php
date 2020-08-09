@@ -18,20 +18,13 @@ trait CRUDActionTrait
     protected $model;
     
     /**
-     * @param array $data
      * @param DataDriverInterface $dataDriver
      * @param string $modelClass
-     *
-     * @throws Exception
      */
     public function __construct(
-        array $data,
         DataDriverInterface $dataDriver,
         string $modelClass
     ) {
-        $this->validateData($data);
-
-        $this->data = $data;
         $this->dataDriver = $dataDriver;
         $this->model = new $modelClass($this->dataDriver);
     }

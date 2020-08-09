@@ -18,12 +18,20 @@ class ExampleGetAction extends AbstractAction
     protected $name = 'example-get-action';
     
     /**
+     * @param array $data
+     *
      * @return array
      *
+     * @throws InvalidArgumentException
      * @throws Exception
      */
-    public function execute()
+    public function execute(array $data)
     {
+        /** @throws InvalidArgumentException */
+        $this->validateData($data['params']);
+        
+        $this->data = $data['params'];
+        
         $id = isset($this->data['id']) ? $this->data['id'] : null;
         
         if ($data = $this->model->get($id)) {

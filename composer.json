@@ -19,7 +19,7 @@
         "guzzlehttp/guzzle": "^7.0",
         "symfony/validator": "^5.1",
         "league/pipeline": "^1.0",
-        "wordstree/socket-conveyor": "^0.0"
+        "wordstree/socket-conveyor": "^0.1"
     },
     "autoload": {
         "psr-4": {

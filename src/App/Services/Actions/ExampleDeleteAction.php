@@ -18,10 +18,19 @@ class ExampleDeleteAction extends AbstractAction
     protected $name = 'example-delete-action';
     
     /**
+     * @param array $data
+     *
      * @return void
+     *
+     * @throws InvalidArgumentException
      */
-    public function execute()
+    public function execute(array $data)
     {
+        /** @throws InvalidArgumentException */
+        $this->validateData($data['params']);
+
+        $this->data = $data['params'];
+        
         $id = (int) $this->data['id'];
 
         return $this->model->delete($id);
